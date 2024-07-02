@@ -9,7 +9,7 @@ import java.util.List;
 @Entity
 @Data
 public class DiagnosticCenter {
-    
+
     private String centerId;
     private String centerName;
     private List<Test> listOfTests;
