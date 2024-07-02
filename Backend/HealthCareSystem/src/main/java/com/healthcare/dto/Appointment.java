@@ -1,4 +1,4 @@
-package com.healthcare.system.DTO;
+package com.healthcare.dto;
 
 import lombok.Data;
 
