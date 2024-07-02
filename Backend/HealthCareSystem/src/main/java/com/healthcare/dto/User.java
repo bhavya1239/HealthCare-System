@@ -1,6 +1,7 @@
 package com.healthcare.dto;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import lombok.Data;
 
@@ -11,6 +12,7 @@ import java.util.List;
 @Data
 public class User {
     @Id
+    @GeneratedValue
     private String userId;
     private List<DiagnosticCenter> centerList;
     private String userPassword;
