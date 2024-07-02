@@ -1,10 +1,12 @@
 package com.healthcare.system.DTO;
 
+import jakarta.persistence.Entity;
 import lombok.Data;
 
 import java.math.BigInteger;
 import java.util.List;
 
+@Entity
 @Data
 public class User {
     private String userId;
