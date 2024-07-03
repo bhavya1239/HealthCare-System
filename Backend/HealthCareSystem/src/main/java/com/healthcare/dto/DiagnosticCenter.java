@@ -20,11 +20,9 @@ public class DiagnosticCenter {
     private String centerName;
 
     @OneToMany(mappedBy = "diagnosticCenter", cascade = CascadeType.ALL)
-
     private List<Test> listOfTests;
 
     @OneToMany(mappedBy = "diagnosticCenter", cascade = CascadeType.ALL)
-
     private List<Appointment> listOfAppointments;
 
 }

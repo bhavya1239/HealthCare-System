@@ -17,7 +17,6 @@ public class Test {
     @GeneratedValue
 
     private String testId;
-
     private String testName;
 
     @ManyToOne(cascade = CascadeType.ALL)

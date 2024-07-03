@@ -14,10 +14,7 @@ import java.time.LocalDateTime;
 
 @Entity
 
-public class
-
-
-Appointment {
+public class Appointment {
 
     @Id
     @GeneratedValue
@@ -26,12 +23,10 @@ Appointment {
     @OneToOne (cascade = CascadeType.ALL)
     private User user;
 
-
-    private Test test;
-
     @ManyToOne
     @JoinColumn(name = "center_id")
     private DiagnosticCenter diagnosticCenter;
+
     private LocalDateTime datetime;
     private boolean approved;
 

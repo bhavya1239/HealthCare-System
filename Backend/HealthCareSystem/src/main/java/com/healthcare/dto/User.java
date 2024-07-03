@@ -24,7 +24,7 @@ public class User {
 
     @OneToOne( cascade = CascadeType.ALL)
 
-    private List<Appointment> appointments;
+    private Appointment appointments;
 
     private String userPassword;
 
