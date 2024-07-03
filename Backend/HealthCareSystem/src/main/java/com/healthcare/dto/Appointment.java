@@ -1,32 +1,38 @@
 package com.healthcare.dto;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToOne;
+
+
+import jakarta.persistence.*;
+
 import lombok.Data;
 
 import java.math.BigInteger;
+
 import java.time.LocalDateTime;
+
 import java.util.Date;
 
 @Data
+
 @Entity
+
 public class Appointment {
+
     @Id
     @GeneratedValue
     private BigInteger appointmentId;
 
-    @OneToOne
+    @ManyToOne (cascade = CascadeType.ALL)
     private User user;
-    @OneToOne
+
+    @OneToOne(cascade = CascadeType.ALL)
     private Test test;
-    private LocalDateTime dateTime;
+
+    @ManyToOne
+    @JoinColumn(name = "center_id")
+    private DiagnosticCenter diagnosticCenter;
+    private LocalDateTime datetime;
     private boolean approved;
 
-    public void setDiagnosticCenter(DiagnosticCenter center) {
-    }
-
-    public void setDatetime(LocalDateTime datetime) {
-    }
 }
+
