@@ -1,9 +1,6 @@
 package com.healthcare.dto;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
 import lombok.Data;
 
 import java.util.List;
@@ -15,8 +12,10 @@ public class DiagnosticCenter {
     @GeneratedValue
     private String centerId;
     private String centerName;
-    @OneToMany
+
+    @OneToMany(mappedBy = "diagnosticCenter", cascade = CascadeType.ALL)
     private List<Test> listOfTests;
-    @OneToMany
+
+    @OneToMany(mappedBy = "diagnosticCenter", cascade = CascadeType.ALL)
     private List<Appointment> listOfAppointments;
 }
