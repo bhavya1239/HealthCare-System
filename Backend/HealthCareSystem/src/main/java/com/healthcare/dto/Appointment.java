@@ -27,7 +27,7 @@ Appointment {
     private User user;
 
 
-    private Test test;
+
 
     @ManyToOne
     @JoinColumn(name = "center_id")
