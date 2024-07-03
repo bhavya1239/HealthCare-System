@@ -23,10 +23,10 @@ Appointment {
     @GeneratedValue
     private BigInteger appointmentId;
 
-    @ManyToOne (cascade = CascadeType.ALL)
+    @OneToOne (cascade = CascadeType.ALL)
     private User user;
 
-    @OneToOne(cascade = CascadeType.ALL)
+
     private Test test;
 
     @ManyToOne

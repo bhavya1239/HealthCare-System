@@ -22,7 +22,7 @@ public class User {
 
     private String userId;
 
-    @OneToMany( cascade = CascadeType.ALL)
+    @OneToOne( cascade = CascadeType.ALL)
 
     private List<Appointment> appointments;
 
