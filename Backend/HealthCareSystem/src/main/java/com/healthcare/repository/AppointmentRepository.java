@@ -1,6 +1,6 @@
 package com.healthcare.repository;
 
-import com.healthcare.dto.DiagnosticCenter;
+import com.healthcare.dto.Appointment;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -12,26 +12,25 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Function;
-
 @Repository
-public class DiagnosticCenterRepository implements JpaRepository<DiagnosticCenter, Long> {
+public class AppointmentRepository implements JpaRepository<Appointment, Long> {
     @Override
     public void flush() {
 
     }
 
     @Override
-    public <S extends DiagnosticCenter> S saveAndFlush(S entity) {
+    public <S extends Appointment> S saveAndFlush(S entity) {
         return null;
     }
 
     @Override
-    public <S extends DiagnosticCenter> List<S> saveAllAndFlush(Iterable<S> entities) {
+    public <S extends Appointment> List<S> saveAllAndFlush(Iterable<S> entities) {
         return List.of();
     }
 
     @Override
-    public void deleteAllInBatch(Iterable<DiagnosticCenter> entities) {
+    public void deleteAllInBatch(Iterable<Appointment> entities) {
 
     }
 
@@ -46,67 +45,67 @@ public class DiagnosticCenterRepository implements JpaRepository<DiagnosticCente
     }
 
     @Override
-    public DiagnosticCenter getOne(Long aLong) {
+    public Appointment getOne(Long aLong) {
         return null;
     }
 
     @Override
-    public DiagnosticCenter getById(Long aLong) {
+    public Appointment getById(Long aLong) {
         return null;
     }
 
     @Override
-    public DiagnosticCenter getReferenceById(Long aLong) {
+    public Appointment getReferenceById(Long aLong) {
         return null;
     }
 
     @Override
-    public <S extends DiagnosticCenter> Optional<S> findOne(Example<S> example) {
+    public <S extends Appointment> Optional<S> findOne(Example<S> example) {
         return Optional.empty();
     }
 
     @Override
-    public <S extends DiagnosticCenter> List<S> findAll(Example<S> example) {
+    public <S extends Appointment> List<S> findAll(Example<S> example) {
         return List.of();
     }
 
     @Override
-    public <S extends DiagnosticCenter> List<S> findAll(Example<S> example, Sort sort) {
+    public <S extends Appointment> List<S> findAll(Example<S> example, Sort sort) {
         return List.of();
     }
 
     @Override
-    public <S extends DiagnosticCenter> Page<S> findAll(Example<S> example, Pageable pageable) {
+    public <S extends Appointment> Page<S> findAll(Example<S> example, Pageable pageable) {
         return null;
     }
 
     @Override
-    public <S extends DiagnosticCenter> long count(Example<S> example) {
+    public <S extends Appointment> long count(Example<S> example) {
         return 0;
     }
 
     @Override
-    public <S extends DiagnosticCenter> boolean exists(Example<S> example) {
+    public <S extends Appointment> boolean exists(Example<S> example) {
         return false;
     }
 
     @Override
-    public <S extends DiagnosticCenter, R> R findBy(Example<S> example, Function<FluentQuery.FetchableFluentQuery<S>, R> queryFunction) {
+    public <S extends Appointment, R> R findBy(Example<S> example, Function<FluentQuery.FetchableFluentQuery<S>, R> queryFunction) {
         return null;
     }
 
     @Override
-    public <S extends DiagnosticCenter> S save(S entity) {
+    public <S extends Appointment> S save(S entity) {
         return null;
     }
 
     @Override
-    public <S extends DiagnosticCenter> List<S> saveAll(Iterable<S> entities) {
+    public <S extends Appointment> List<S> saveAll(Iterable<S> entities) {
         return List.of();
     }
 
     @Override
-    public Optional<DiagnosticCenter> findById(Long aLong) {
+    public Optional<Appointment> findById(Long aLong) {
         return Optional.empty();
     }
 
@@ -116,12 +115,12 @@ public class DiagnosticCenterRepository implements JpaRepository<DiagnosticCente
     }
 
     @Override
-    public List<DiagnosticCenter> findAll() {
+    public List<Appointment> findAll() {
         return List.of();
     }
 
     @Override
-    public List<DiagnosticCenter> findAllById(Iterable<Long> longs) {
+    public List<Appointment> findAllById(Iterable<Long> longs) {
         return List.of();
     }
 
@@ -136,7 +135,7 @@ public class DiagnosticCenterRepository implements JpaRepository<DiagnosticCente
     }
 
     @Override
-    public void delete(DiagnosticCenter entity) {
+    public void delete(Appointment entity) {
 
     }
 
@@ -146,7 +145,7 @@ public class DiagnosticCenterRepository implements JpaRepository<DiagnosticCente
     }
 
     @Override
-    public void deleteAll(Iterable<? extends DiagnosticCenter> entities) {
+    public void deleteAll(Iterable<? extends Appointment> entities) {
 
     }
 
@@ -156,12 +155,16 @@ public class DiagnosticCenterRepository implements JpaRepository<DiagnosticCente
     }
 
     @Override
-    public List<DiagnosticCenter> findAll(Sort sort) {
+    public List<Appointment> findAll(Sort sort) {
         return List.of();
     }
 
     @Override
-    public Page<DiagnosticCenter> findAll(Pageable pageable) {
+    public Page<Appointment> findAll(Pageable pageable) {
         return null;
+    }
+
+    public List<Appointment> findByDiagnosticCenterCenterId(Long centerId) {
+        return List.of();
     }
 }
