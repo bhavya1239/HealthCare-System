@@ -7,6 +7,7 @@ import jakarta.persistence.OneToOne;
 import lombok.Data;
 
 import java.math.BigInteger;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Data
@@ -20,6 +21,12 @@ public class Appointment {
     private User user;
     @OneToOne
     private Test test;
-    private Date dateTime;
+    private LocalDateTime dateTime;
     private boolean approved;
+
+    public void setDiagnosticCenter(DiagnosticCenter center) {
+    }
+
+    public void setDatetime(LocalDateTime datetime) {
+    }
 }

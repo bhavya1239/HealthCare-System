@@ -12,4 +12,7 @@ public class Test {
     @GeneratedValue
     private String testId;
     private String testName;
+
+    public void setDiagnosticCenter(DiagnosticCenter center) {
+    }
 }

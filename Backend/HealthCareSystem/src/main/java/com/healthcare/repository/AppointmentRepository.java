@@ -1,6 +1,6 @@
 package com.healthcare.repository;
 
-import com.healthcare.dto.Test;
+import com.healthcare.dto.Appointment;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -12,24 +12,24 @@ import java.util.List;
 import java.util.Optional;
 import java.util.function.Function;
 
-public class TestRepository  implements JpaRepository<Test, Long> {
+public class AppointmentRepository  implements JpaRepository<Appointment, Long> {
     @Override
     public void flush() {
 
     }
 
     @Override
-    public <S extends Test> S saveAndFlush(S entity) {
+    public <S extends Appointment> S saveAndFlush(S entity) {
         return null;
     }
 
     @Override
-    public <S extends Test> List<S> saveAllAndFlush(Iterable<S> entities) {
+    public <S extends Appointment> List<S> saveAllAndFlush(Iterable<S> entities) {
         return List.of();
     }
 
     @Override
-    public void deleteAllInBatch(Iterable<Test> entities) {
+    public void deleteAllInBatch(Iterable<Appointment> entities) {
 
     }
 
@@ -44,67 +44,67 @@ public class TestRepository  implements JpaRepository<Test, Long> {
     }
 
     @Override
-    public Test getOne(Long aLong) {
+    public Appointment getOne(Long aLong) {
         return null;
     }
 
     @Override
-    public Test getById(Long aLong) {
+    public Appointment getById(Long aLong) {
         return null;
     }
 
     @Override
-    public Test getReferenceById(Long aLong) {
+    public Appointment getReferenceById(Long aLong) {
         return null;
     }
 
     @Override
-    public <S extends Test> Optional<S> findOne(Example<S> example) {
+    public <S extends Appointment> Optional<S> findOne(Example<S> example) {
         return Optional.empty();
     }
 
     @Override
-    public <S extends Test> List<S> findAll(Example<S> example) {
+    public <S extends Appointment> List<S> findAll(Example<S> example) {
         return List.of();
     }
 
     @Override
-    public <S extends Test> List<S> findAll(Example<S> example, Sort sort) {
+    public <S extends Appointment> List<S> findAll(Example<S> example, Sort sort) {
         return List.of();
     }
 
     @Override
-    public <S extends Test> Page<S> findAll(Example<S> example, Pageable pageable) {
+    public <S extends Appointment> Page<S> findAll(Example<S> example, Pageable pageable) {
         return null;
     }
 
     @Override
-    public <S extends Test> long count(Example<S> example) {
+    public <S extends Appointment> long count(Example<S> example) {
         return 0;
     }
 
     @Override
-    public <S extends Test> boolean exists(Example<S> example) {
+    public <S extends Appointment> boolean exists(Example<S> example) {
         return false;
     }
 
     @Override
-    public <S extends Test, R> R findBy(Example<S> example, Function<FluentQuery.FetchableFluentQuery<S>, R> queryFunction) {
+    public <S extends Appointment, R> R findBy(Example<S> example, Function<FluentQuery.FetchableFluentQuery<S>, R> queryFunction) {
         return null;
     }
 
     @Override
-    public <S extends Test> S save(S entity) {
+    public <S extends Appointment> S save(S entity) {
         return null;
     }
 
     @Override
-    public <S extends Test> List<S> saveAll(Iterable<S> entities) {
+    public <S extends Appointment> List<S> saveAll(Iterable<S> entities) {
         return List.of();
     }
 
     @Override
-    public Optional<Test> findById(Long aLong) {
+    public Optional<Appointment> findById(Long aLong) {
         return Optional.empty();
     }
 
@@ -114,12 +114,12 @@ public class TestRepository  implements JpaRepository<Test, Long> {
     }
 
     @Override
-    public List<Test> findAll() {
+    public List<Appointment> findAll() {
         return List.of();
     }
 
     @Override
-    public List<Test> findAllById(Iterable<Long> longs) {
+    public List<Appointment> findAllById(Iterable<Long> longs) {
         return List.of();
     }
 
@@ -134,7 +134,7 @@ public class TestRepository  implements JpaRepository<Test, Long> {
     }
 
     @Override
-    public void delete(Test entity) {
+    public void delete(Appointment entity) {
 
     }
 
@@ -144,7 +144,7 @@ public class TestRepository  implements JpaRepository<Test, Long> {
     }
 
     @Override
-    public void deleteAll(Iterable<? extends Test> entities) {
+    public void deleteAll(Iterable<? extends Appointment> entities) {
 
     }
 
@@ -154,16 +154,16 @@ public class TestRepository  implements JpaRepository<Test, Long> {
     }
 
     @Override
-    public List<Test> findAll(Sort sort) {
+    public List<Appointment> findAll(Sort sort) {
         return List.of();
     }
 
     @Override
-    public Page<Test> findAll(Pageable pageable) {
+    public Page<Appointment> findAll(Pageable pageable) {
         return null;
     }
 
-    public List<Test> findByDiagnosticCenterCenterId(Long centerId) {
+    public List<Appointment> findByDiagnosticCenterCenterId(Long centerId) {
         return List.of();
     }
 }
