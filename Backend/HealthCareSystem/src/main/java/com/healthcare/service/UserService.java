@@ -37,7 +37,7 @@ public class UserService {
         return diagnosticCenterRepository.findAll();
     }
 
-    public List<Test> getTests(Long centerId) {
+    public List<Test> getTests(String centerId) {
         return testRepository.findByDiagnosticCenterCenterId(centerId);
     }
 

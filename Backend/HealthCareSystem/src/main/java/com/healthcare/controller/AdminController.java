@@ -36,7 +36,7 @@ public class AdminController {
     }
 
     @GetMapping("/centers/{centerId}/appointments")
-    public List<Appointment> getAppointments(@PathVariable Long centerId) {
+    public List<Appointment> getAppointments(@PathVariable String centerId) {
         return adminService.getAppointments(centerId);
     }
 

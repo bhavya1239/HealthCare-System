@@ -14,5 +14,6 @@ import java.util.Optional;
 import java.util.function.Function;
 @Repository
 public interface TestRepository  extends JpaRepository<Test, Long> {
-    
+
+    List<Test> findByDiagnosticCenterCenterId(String centerId);
 }

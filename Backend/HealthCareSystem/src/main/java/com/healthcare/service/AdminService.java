@@ -40,7 +40,7 @@ public class AdminService {
         testRepository.deleteById(testId);
     }
 
-    public List<Appointment> getAppointments(Long centerId) {
+    public List<Appointment> getAppointments(String centerId) {
         return appointmentRepository.findByDiagnosticCenterCenterId(centerId);
     }
 

@@ -28,7 +28,7 @@ public class CustomerController {
     }
 
     @GetMapping("/centers/{centerId}/tests")
-    public List<Test> getTests(@PathVariable Long centerId) {
+    public List<Test> getTests(@PathVariable String centerId) {
         return userService.getTests(centerId);
     }
 
