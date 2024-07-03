@@ -15,11 +15,8 @@ import java.util.List;
 public class DiagnosticCenter {
 
     @Id
-
-    @GeneratedValue
-
+    @GeneratedValue(strategy = GenerationType.UUID)
     private String centerId;
-
     private String centerName;
 
     @OneToMany(mappedBy = "diagnosticCenter", cascade = CascadeType.ALL)

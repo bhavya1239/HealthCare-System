@@ -33,7 +33,7 @@ public class CustomerController {
     }
 
     @PostMapping("/appointments")
-    public Appointment makeAppointment(@RequestParam Long userId, @RequestParam Long centerId, @RequestParam Long testId, @RequestParam LocalDateTime datetime) {
+    public Appointment makeAppointment(@RequestParam Long userId, @RequestParam String centerId, @RequestParam Long testId, @RequestParam LocalDateTime datetime) {
         return userService.makeAppointment(userId, centerId, testId, datetime);
     }
 }

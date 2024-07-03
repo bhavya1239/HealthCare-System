@@ -15,18 +15,23 @@ public class AdminController {
     @Autowired
     private AdminService adminService;
 
-    @PostMapping("/centers")
+    @PostMapping("/addCenter")
     public DiagnosticCenter addCenter(@RequestBody DiagnosticCenter center) {
         return adminService.addCenter(center);
     }
 
+    @GetMapping("/allCenters")
+    public List<DiagnosticCenter> getAllCenters(){
+        return adminService.getAllCenters();
+    }
+
     @DeleteMapping("/centers/{centerId}")
-    public void removeCenter(@PathVariable Long centerId) {
+    public void removeCenter(@PathVariable String centerId) {
         adminService.removeCenter(centerId);
     }
 
     @PostMapping("/centers/{centerId}/tests")
-    public Test addTest(@PathVariable Long centerId, @RequestBody Test test) {
+    public Test addTest(@PathVariable String centerId, @RequestBody Test test) {
         return adminService.addTest(centerId, test);
     }
 

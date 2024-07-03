@@ -26,11 +26,15 @@ public class AdminService {
         return diagnosticCenterRepository.save(center);
     }
 
-    public void removeCenter(Long centerId) {
+    public List<DiagnosticCenter> getAllCenters(){
+        return diagnosticCenterRepository.findAll();
+    }
+
+    public void removeCenter(String centerId) {
         diagnosticCenterRepository.deleteById(centerId);
     }
 
-    public Test addTest(Long centerId, Test test) {
+    public Test addTest(String centerId, Test test) {
         DiagnosticCenter center = diagnosticCenterRepository.findById(centerId).orElseThrow();
         test.setDiagnosticCenter(center);
         return testRepository.save(test);

@@ -14,5 +14,5 @@ import java.util.Optional;
 import java.util.function.Function;
 
 @Repository
-public interface DiagnosticCenterRepository extends JpaRepository<DiagnosticCenter, Long> {
+public interface DiagnosticCenterRepository extends JpaRepository<DiagnosticCenter, String> {
 }
