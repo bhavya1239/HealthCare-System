@@ -29,9 +29,6 @@ public class UserService {
     @Autowired
     private AppointmentRepository appointmentRepository;
 
-    public User register(User user) {
-        return userRepository.save(user);
-    }
 
     public List<DiagnosticCenter> getDiagnosticCenters() {
         return diagnosticCenterRepository.findAll();

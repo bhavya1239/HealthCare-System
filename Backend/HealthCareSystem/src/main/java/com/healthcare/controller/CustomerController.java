@@ -17,10 +17,6 @@ public class CustomerController {
     @Autowired
     private UserService userService;
 
-    @PostMapping("/register")
-    public User register(@RequestBody User user) {
-        return userService.register(user);
-    }
 
     @GetMapping("/centers")
     public List<DiagnosticCenter> getDiagnosticCenters() {
