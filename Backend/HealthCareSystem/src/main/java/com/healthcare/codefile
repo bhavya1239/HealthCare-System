@@ -1,0 +1,626 @@
+yml file
+spring:
+  jpa:
+    show-sql:  true
+    hibernate:
+        ddl-auto:  update # do create for first time then update it
+  datasource:
+    url: jdbc:mysql://localhost:3306/hc1
+    username:  root
+    password:  niit@123
+    driver-class-name:  com.mysql.cj.jdbc.Driver
+
+
+healthcare main file
+package com.healthcare;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class HealthCareSystemMain {
+    public static void main(String[] args) {
+        SpringApplication.run(HealthCareSystemMain.class, args);
+
+    }
+}
+
+
+
+UserService
+package com.healthcare.service;
+
+import com.healthcare.dto.DiagnosticCenter;
+import com.healthcare.dto.Test;
+import com.healthcare.dto.User;
+import com.healthcare.repository.AppointmentRepository;
+import com.healthcare.repository.DiagnosticCenterRepository;
+import com.healthcare.repository.TestRepository;
+import com.healthcare.repository.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import com.healthcare.dto.Appointment;
+import org.springframework.stereotype.Service;
+
+import java.time.LocalDateTime;
+import java.util.List;
+
+@Service
+public class UserService {
+
+    @Autowired
+    private UserRepository userRepository;
+
+    @Autowired
+    private DiagnosticCenterRepository diagnosticCenterRepository;
+
+    @Autowired
+    private TestRepository testRepository;
+
+    @Autowired
+    private AppointmentRepository appointmentRepository;
+
+
+    public List<DiagnosticCenter> getDiagnosticCenters() {
+        return diagnosticCenterRepository.findAll();
+    }
+
+    public List<Test> getTests(String centerId) {
+        return testRepository.findByDiagnosticCenterCenterId(centerId);
+    }
+
+    public Appointment makeAppointment(Long userId, String
+            centerId, Long testId, LocalDateTime datetime) {
+        User user = userRepository.findById(userId).orElseThrow();
+        DiagnosticCenter center = diagnosticCenterRepository.findById(centerId).orElseThrow();
+        Test test = testRepository.findById(testId).orElseThrow();
+
+        Appointment appointment = new Appointment();
+        appointment.setUser(user);
+        appointment.setDiagnosticCenter(center);
+        appointment.setDatetime(datetime);
+        appointment.setApproved(false);
+
+        return appointmentRepository.save(appointment);
+    }
+}
+
+Admin Service
+package com.healthcare.service;
+
+import com.healthcare.dto.Appointment;
+import com.healthcare.dto.DiagnosticCenter;
+import com.healthcare.dto.Test;
+import com.healthcare.dto.User;
+import com.healthcare.repository.AppointmentRepository;
+import com.healthcare.repository.DiagnosticCenterRepository;
+import com.healthcare.repository.TestRepository;
+import com.healthcare.repository.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
+@Service
+public class AdminService {
+    @Autowired
+    private DiagnosticCenterRepository diagnosticCenterRepository;
+
+    @Autowired
+    private TestRepository testRepository;
+
+    @Autowired
+    private AppointmentRepository appointmentRepository;
+
+    @Autowired
+    private UserRepository userRepository;
+
+    public User register(User user) {
+        return userRepository.save(user);
+    }
+
+    public List<User> getAllUsers(){
+        return userRepository.findAll();
+    }
+
+    public DiagnosticCenter addCenter(DiagnosticCenter center) {
+        return diagnosticCenterRepository.save(center);
+    }
+
+    public List<DiagnosticCenter> getAllCenters(){
+        return diagnosticCenterRepository.findAll();
+    }
+
+    public void removeCenter(String centerId) {
+        diagnosticCenterRepository.deleteById(centerId);
+    }
+
+    public Test addTest(Test test) {
+        return testRepository.save(test);
+    }
+
+    public void removeTest(Long testId) {
+        testRepository.deleteById(testId);
+    }
+
+    public List<Appointment> getAppointments(String centerId) {
+        return appointmentRepository.findByDiagnosticCenterCenterId(centerId);
+    }
+
+    public void approveAppointment(Long appointmentId, boolean approved) {
+        Appointment appointment = appointmentRepository.findById(appointmentId).orElseThrow();
+        appointment.setApproved(approved);
+        appointmentRepository.save(appointment);
+    }
+    // Add a new method for choosing a center
+    public DiagnosticCenter chooseCenter(String centerId) {
+        return diagnosticCenterRepository.findById(centerId).orElseThrow();
+    }
+
+    // Add a new method for entering test details
+    public void enterTestDetails(String centerId, Test test) {
+        DiagnosticCenter center = diagnosticCenterRepository.findById(centerId).orElseThrow();
+    }
+
+    // Add a new method for submitting test details
+    public void submitTestDetails(String centerId) {
+        // Get the diagnostic center
+        DiagnosticCenter center = diagnosticCenterRepository.findById(centerId).orElseThrow();
+
+        // Get all tests associated with the center
+        List<Test> tests = testRepository.findByDiagnosticCenterCenterId(centerId);
+
+        // Save each test to the database
+        for (Test test : tests) {
+            testRepository.save(test);
+        }
+    }
+
+
+    // Get test details
+    public List<Test> getAllTests() {
+        return testRepository.findAll();
+    }
+}
+
+
+
+
+UserRepository
+package com.healthcare.repository;
+
+import com.healthcare.dto.User;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface UserRepository extends JpaRepository<User, Long> {
+
+}
+
+
+TestRepository
+package com.healthcare.repository;
+
+import com.healthcare.dto.Test;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+import java.util.List;
+@Repository
+public interface TestRepository  extends JpaRepository<Test, Long> {
+
+    List<Test> findByDiagnosticCenterCenterId(String centerId);
+}
+
+DiagnosticCentreRepository
+package com.healthcare.repository;
+
+import com.healthcare.dto.DiagnosticCenter;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface DiagnosticCenterRepository extends JpaRepository<DiagnosticCenter, String> {
+}
+
+
+AppointmentRepository
+package com.healthcare.repository;
+
+import com.healthcare.dto.Appointment;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+import java.util.List;
+
+@Repository
+public interface AppointmentRepository extends JpaRepository<Appointment, Long> {
+    List<Appointment> findByDiagnosticCenterCenterId(String centerId);
+}
+
+
+AdminController
+package com.healthcare.controller;
+
+import com.healthcare.dto.Appointment;
+import com.healthcare.dto.DiagnosticCenter;
+import com.healthcare.dto.Test;
+import com.healthcare.dto.User;
+import com.healthcare.service.AdminService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+@RestController
+@RequestMapping("/admin")
+public class AdminController {
+    @Autowired
+    private AdminService adminService;
+
+    @PostMapping("/register")
+    public User register(@RequestBody User user) {
+        return adminService.register(user);
+    }
+
+    @GetMapping("/allUsers")
+    public List<User> getAllUser(){
+        return adminService.getAllUsers();
+    }
+
+    @PostMapping("/addCenter")
+    public DiagnosticCenter addCenter(@RequestBody DiagnosticCenter center) {
+        return adminService.addCenter(center);
+    }
+
+    @GetMapping("/allCenters")
+    public List<DiagnosticCenter> getAllCenters(){
+        return adminService.getAllCenters();
+    }
+
+    @DeleteMapping("/centers/{centerId}")
+    public void removeCenter(@PathVariable String centerId) {
+        adminService.removeCenter(centerId);
+    }
+
+    @DeleteMapping("/tests/{testId}")
+    public void removeTest(@PathVariable Long testId) {
+        adminService.removeTest(testId);
+    }
+
+    @GetMapping("/centers/{centerId}/appointments")
+    public List<Appointment> getAppointments(@PathVariable String centerId) {
+        return adminService.getAppointments(centerId);
+    }
+
+    @PostMapping("/appointments/{appointmentId}/approve")
+    public void approveAppointment(@PathVariable Long appointmentId, @RequestParam boolean approved) {
+        adminService.approveAppointment(appointmentId, approved);
+    }
+    @PostMapping("/addTest")
+    public Test addTest(@RequestBody Test test) {
+        return adminService.addTest(test);
+    }
+
+    @GetMapping("/tests")
+    public List<Test> getAllTests() {
+        return adminService.getAllTests();
+    }
+}
+
+CustomerController
+package com.healthcare.controller;
+
+import com.healthcare.dto.Appointment;
+import com.healthcare.dto.DiagnosticCenter;
+import com.healthcare.dto.Test;
+import com.healthcare.dto.User;
+import com.healthcare.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import java.time.LocalDateTime;
+import java.util.List;
+
+@RestController
+@RequestMapping("/user")
+public class CustomerController {
+    @Autowired
+    private UserService userService;
+
+
+    @GetMapping("/centers")
+    public List<DiagnosticCenter> getDiagnosticCenters() {
+        return userService.getDiagnosticCenters();
+    }
+
+    @GetMapping("/centers/{centerId}/tests")
+    public List<Test> getTests(@PathVariable String centerId) {
+        return userService.getTests(centerId);
+    }
+
+    @PostMapping("/appointments")
+    public Appointment makeAppointment(@RequestParam Long userId, @RequestParam String centerId, @RequestParam Long testId, @RequestParam LocalDateTime datetime) {
+        return userService.makeAppointment(userId, centerId, testId, datetime);
+    }
+}
+
+
+Appointment
+package com.healthcare.dto;
+
+
+
+import jakarta.persistence.*;
+
+import lombok.Data;
+
+import java.math.BigInteger;
+
+import java.time.LocalDateTime;
+
+@Data
+
+@Entity
+
+public class Appointment {
+
+    @Id
+    @GeneratedValue
+    private BigInteger appointmentId;
+
+    @OneToOne (cascade = CascadeType.ALL)
+    private User user;
+
+    @ManyToOne
+    @JoinColumn(name = "center_id")
+    private DiagnosticCenter diagnosticCenter;
+
+    private LocalDateTime datetime;
+    private boolean approved;
+
+}
+
+DiagnoticCentre
+
+package com.healthcare.dto;
+
+
+
+import jakarta.persistence.*;
+
+import lombok.Data;
+
+import java.util.List;
+
+@Entity
+
+@Data
+
+public class DiagnosticCenter {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private String centerId;
+    private String centerName;
+
+    @OneToMany(mappedBy = "diagnosticCenter", cascade = CascadeType.ALL)
+    private List<Test> listOfTests;
+
+    @OneToMany(mappedBy = "diagnosticCenter", cascade = CascadeType.ALL)
+    private List<Appointment> listOfAppointments;
+
+}
+
+Test
+
+package com.healthcare.dto;
+
+
+
+import jakarta.persistence.*;
+
+import lombok.Data;
+
+@Data
+
+@Entity
+
+public class Test {
+
+    @Id
+
+    @GeneratedValue
+
+    private String testId;
+    private String testName;
+
+    @ManyToOne(cascade = CascadeType.ALL)
+
+    @JoinColumn(name = "center_id")
+
+    private DiagnosticCenter diagnosticCenter;
+
+}
+
+User
+
+package com.healthcare.dto;
+
+
+
+import jakarta.persistence.*;
+
+import lombok.Data;
+
+import java.math.BigInteger;
+
+import java.util.List;
+
+@Entity
+
+@Data
+
+public class User {
+
+    @Id
+
+    @GeneratedValue
+
+    private String userId;
+
+    @OneToOne( cascade = CascadeType.ALL)
+
+    private Appointment appointments;
+
+    private String userPassword;
+
+    private String userName;
+
+    private BigInteger contactNo;
+
+    private String userRole;
+
+    private String emailId;
+
+}
+
+
+Pom.xml
+
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>3.3.1</version>
+		<relativePath/> <!-- lookup parent from repository -->
+	</parent>
+	<groupId>com.project1</groupId>
+	<artifactId>HealthCareSystem</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>HealthCareSystem</name>
+	<description>Demo project for Spring Boot</description>
+	<url/>
+	<licenses>
+		<license/>
+	</licenses>
+	<developers>
+		<developer/>
+	</developers>
+	<scm>
+		<connection/>
+		<developerConnection/>
+		<tag/>
+		<url/>
+	</scm>
+	<properties>
+		<java.version>17</java.version>
+	</properties>
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<optional>true</optional>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>com.mysql</groupId>
+			<artifactId>mysql-connector-j</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+					<excludes>
+						<exclude>
+							<groupId>org.projectlombok</groupId>
+							<artifactId>lombok</artifactId>
+						</exclude>
+					</excludes>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>
+
+
+
+SpringConfig
+package com.healthcare.config;
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
+import org.springframework.security.authentication.jaas.memory.InMemoryConfiguration;
+import org.springframework.security.config.Customizer;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.password.NoOpPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+import org.springframework.security.web.SecurityFilterChain;
+
+@Configuration
+public class SpringConfig {
+
+	@Bean
+	public UserDetailsService getUserDetail() {
+		InMemoryUserDetailsManager userDetail = new InMemoryUserDetailsManager();
+		UserDetails user = User.withUsername("HealthCareSystem").password("123456").authorities("read").build();
+
+		userDetail.createUser(user);
+		return userDetail;
+	}
+
+	@Bean
+	public PasswordEncoder getEncoder() {
+		return NoOpPasswordEncoder.getInstance();
+	}
+
+
+	@Bean
+	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+		http.csrf(AbstractHttpConfigurer::disable)
+				.cors(Customizer.withDefaults())
+				.authorizeHttpRequests(authorizationManagerRequestMatcherRegistry -> authorizationManagerRequestMatcherRegistry
+						//.requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
+						.requestMatchers("/admin").permitAll()
+						.anyRequest().authenticated())
+				.httpBasic(Customizer.withDefaults());
+		return http.build();
+	}
+}
+
+
