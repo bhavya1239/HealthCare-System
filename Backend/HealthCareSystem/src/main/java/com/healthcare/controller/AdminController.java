@@ -36,10 +36,7 @@ public class AdminController {
         adminService.removeCenter(centerId);
     }
 
-    @PostMapping("/centers/{centerId}/tests")
-    public Test addTest(@PathVariable String centerId, @RequestBody Test test) {
-        return adminService.addTest(centerId, test);
-    }
+
 
     @DeleteMapping("/tests/{testId}")
     public void removeTest(@PathVariable Long testId) {
@@ -55,22 +52,20 @@ public class AdminController {
     public void approveAppointment(@PathVariable Long appointmentId, @RequestParam boolean approved) {
         adminService.approveAppointment(appointmentId, approved);
     }
-    // Add a new endpoint for choosing a center
-    @PostMapping("/centers/{centerId}/choose")
-    public DiagnosticCenter chooseCenter(@PathVariable String centerId) {
-        return adminService.chooseCenter(centerId);
+    @PostMapping("/addTest")
+    public Test addTest(@RequestBody Test test) {
+        return adminService.addTest(test);
     }
 
-    // Add a new endpoint for entering test details
-    @PostMapping("/centers/{centerId}/tests/details")
-    public void enterTestDetails(@PathVariable String centerId, @RequestBody Test test) {
-        adminService.enterTestDetails(centerId, test);
-    }
 
-    // Add a new endpoint for submitting test details
-    @PostMapping("/centers/{centerId}/tests/submit")
-    public void submitTestDetails(@PathVariable String centerId) {
-        adminService.submitTestDetails(centerId);
-    }
+    // Add a new endpoinSt for getting test details
+//    @GetMapping("/centers/{centerId}/tests/details")
+//    public Test getTestDetails(@PathVariable String centerId) {
+//        return adminService.getTestDetails(centerId);
+//    }
 
+    @GetMapping("/tests")
+    public List<Test> getAllTests() {
+        return adminService.getAllTests();
+    }
 }
