@@ -21,6 +21,11 @@ public class AdminController {
         return adminService.register(user);
     }
 
+    @GetMapping("/allUsers")
+    public List<User> getAllUser(){
+        return adminService.getAllUsers();
+    }
+
     @PostMapping("/addCenter")
     public DiagnosticCenter addCenter(@RequestBody DiagnosticCenter center) {
         return adminService.addCenter(center);
@@ -35,8 +40,6 @@ public class AdminController {
     public void removeCenter(@PathVariable String centerId) {
         adminService.removeCenter(centerId);
     }
-
-
 
     @DeleteMapping("/tests/{testId}")
     public void removeTest(@PathVariable Long testId) {
@@ -56,13 +59,6 @@ public class AdminController {
     public Test addTest(@RequestBody Test test) {
         return adminService.addTest(test);
     }
-
-
-    // Add a new endpoinSt for getting test details
-//    @GetMapping("/centers/{centerId}/tests/details")
-//    public Test getTestDetails(@PathVariable String centerId) {
-//        return adminService.getTestDetails(centerId);
-//    }
 
     @GetMapping("/tests")
     public List<Test> getAllTests() {
