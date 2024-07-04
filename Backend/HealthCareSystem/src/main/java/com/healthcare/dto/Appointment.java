@@ -23,6 +23,9 @@ public class Appointment {
     @OneToOne (cascade = CascadeType.ALL)
     private User user;
 
+    @OneToOne (cascade = CascadeType.ALL)
+    private Test test;
+
     @ManyToOne
     @JoinColumn(name = "center_id")
     private DiagnosticCenter diagnosticCenter;

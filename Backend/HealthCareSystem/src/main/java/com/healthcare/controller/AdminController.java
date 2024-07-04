@@ -36,10 +36,7 @@ public class AdminController {
         adminService.removeCenter(centerId);
     }
 
-    @PostMapping("/centers/{centerId}/tests")
-    public Test addTest(@PathVariable String centerId, @RequestBody Test test) {
-        return adminService.addTest(centerId, test);
-    }
+
 
     @DeleteMapping("/tests/{testId}")
     public void removeTest(@PathVariable Long testId) {
@@ -54,5 +51,21 @@ public class AdminController {
     @PostMapping("/appointments/{appointmentId}/approve")
     public void approveAppointment(@PathVariable Long appointmentId, @RequestParam boolean approved) {
         adminService.approveAppointment(appointmentId, approved);
+    }
+    @PostMapping("/addTest")
+    public Test addTest(@RequestBody Test test) {
+        return adminService.addTest(test);
+    }
+
+
+    // Add a new endpoinSt for getting test details
+//    @GetMapping("/centers/{centerId}/tests/details")
+//    public Test getTestDetails(@PathVariable String centerId) {
+//        return adminService.getTestDetails(centerId);
+//    }
+
+    @GetMapping("/tests")
+    public List<Test> getAllTests() {
+        return adminService.getAllTests();
     }
 }
