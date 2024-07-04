@@ -31,6 +31,10 @@ public class AdminService {
         return userRepository.save(user);
     }
 
+    public List<User> getAllUsers(){
+        return userRepository.findAll();
+    }
+
     public DiagnosticCenter addCenter(DiagnosticCenter center) {
         return diagnosticCenterRepository.save(center);
     }

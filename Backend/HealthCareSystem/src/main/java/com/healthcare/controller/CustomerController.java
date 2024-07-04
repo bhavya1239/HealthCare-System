@@ -28,8 +28,8 @@ public class CustomerController {
         return userService.getTests(centerId);
     }
 
-    @PostMapping("/appointments")
-    public Appointment makeAppointment(@RequestParam Long userId, @RequestParam String centerId, @RequestParam Long testId, @RequestParam LocalDateTime datetime) {
-        return userService.makeAppointment(userId, centerId, testId, datetime);
+    @PostMapping("/addAppointment")
+    public Appointment makeAppointment(@RequestBody Appointment appointment) {
+        return userService.makeAppointment(appointment);
     }
 }
