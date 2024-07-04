@@ -14,7 +14,7 @@ public class Test {
 
     @Id
 
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.UUID)
 
     private String testId;
     private String testName;

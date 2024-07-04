@@ -62,25 +62,4 @@ public class AdminService {
         appointment.setApproved(approved);
         appointmentRepository.save(appointment);
     }
-    // Add a new method for choosing a center
-    public DiagnosticCenter chooseCenter(String centerId) {
-        return diagnosticCenterRepository.findById(centerId).orElseThrow();
-    }
-
-    // Add a new method for entering test details
-    public void enterTestDetails(String centerId, Test test) {
-        DiagnosticCenter center = diagnosticCenterRepository.findById(centerId).orElseThrow();
-        test.setDiagnosticCenter(center);
-    }
-
-    // Add a new method for submitting test details
-    public void submitTestDetails(String centerId) {
-        // Save the test to the database
-        // You can use the `testRepository.save(test)` method
-        // to save the test to the database.
-        //...
-    }
-    public static void main(String[] args) {
-        System.out.println("Admin Service");
-    }
 }

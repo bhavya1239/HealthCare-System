@@ -47,6 +47,7 @@ public class UserService {
         Appointment appointment = new Appointment();
         appointment.setUser(user);
         appointment.setDiagnosticCenter(center);
+        appointment.setTest(test);
         appointment.setDatetime(datetime);
         appointment.setApproved(false);
 

@@ -18,7 +18,7 @@ public class User {
 
     @Id
 
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.UUID)
 
     private String userId;
 
