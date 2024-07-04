@@ -3,9 +3,11 @@ package com.healthcare.service;
 import com.healthcare.dto.Appointment;
 import com.healthcare.dto.DiagnosticCenter;
 import com.healthcare.dto.Test;
+import com.healthcare.dto.User;
 import com.healthcare.repository.AppointmentRepository;
 import com.healthcare.repository.DiagnosticCenterRepository;
 import com.healthcare.repository.TestRepository;
+import com.healthcare.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,6 +23,13 @@ public class AdminService {
 
     @Autowired
     private AppointmentRepository appointmentRepository;
+
+    @Autowired
+    private UserRepository userRepository;
+
+    public User register(User user) {
+        return userRepository.save(user);
+    }
 
     public DiagnosticCenter addCenter(DiagnosticCenter center) {
         return diagnosticCenterRepository.save(center);

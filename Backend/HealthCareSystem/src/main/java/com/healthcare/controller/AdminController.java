@@ -3,6 +3,7 @@ package com.healthcare.controller;
 import com.healthcare.dto.Appointment;
 import com.healthcare.dto.DiagnosticCenter;
 import com.healthcare.dto.Test;
+import com.healthcare.dto.User;
 import com.healthcare.service.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -14,6 +15,11 @@ import java.util.List;
 public class AdminController {
     @Autowired
     private AdminService adminService;
+
+    @PostMapping("/register")
+    public User register(@RequestBody User user) {
+        return adminService.register(user);
+    }
 
     @PostMapping("/addCenter")
     public DiagnosticCenter addCenter(@RequestBody DiagnosticCenter center) {

@@ -29,9 +29,6 @@ public class UserService {
     @Autowired
     private AppointmentRepository appointmentRepository;
 
-    public User register(User user) {
-        return userRepository.save(user);
-    }
 
     public List<DiagnosticCenter> getDiagnosticCenters() {
         return diagnosticCenterRepository.findAll();
@@ -41,7 +38,8 @@ public class UserService {
         return testRepository.findByDiagnosticCenterCenterId(centerId);
     }
 
-    public Appointment makeAppointment(Long userId, String centerId, Long testId, LocalDateTime datetime) {
+    public Appointment makeAppointment(Long userId, String
+            centerId, Long testId, LocalDateTime datetime) {
         User user = userRepository.findById(userId).orElseThrow();
         DiagnosticCenter center = diagnosticCenterRepository.findById(centerId).orElseThrow();
         Test test = testRepository.findById(testId).orElseThrow();
@@ -49,7 +47,6 @@ public class UserService {
         Appointment appointment = new Appointment();
         appointment.setUser(user);
         appointment.setDiagnosticCenter(center);
-//        appointment.setTest(test);
         appointment.setDatetime(datetime);
         appointment.setApproved(false);
 
