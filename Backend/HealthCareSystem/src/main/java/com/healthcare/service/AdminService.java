@@ -62,7 +62,4 @@ public class AdminService {
         appointment.setApproved(approved);
         appointmentRepository.save(appointment);
     }
-    public static void main(String[] args) {
-        System.out.println("Admin Service");
-    }
 }
