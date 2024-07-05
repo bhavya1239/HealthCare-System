@@ -46,6 +46,12 @@ public class AdminController {
         adminService.removeTest(testId);
     }
 
+    @DeleteMapping("/centers/{centerId}/tests/{testId}")
+    public void removeTest(@PathVariable String centerId, @PathVariable Long testId) {
+        adminService.removeTest(centerId, testId);
+    }
+
+
     @GetMapping("/centers/{centerId}/appointments")
     public List<Appointment> getAppointments(@PathVariable String centerId) {
         return adminService.getAppointments(centerId);
