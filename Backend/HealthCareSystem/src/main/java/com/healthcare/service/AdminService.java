@@ -93,4 +93,19 @@ public class AdminService {
     public List<Test> getAllTests() {
         return testRepository.findAll();
     }
+
+
+    // Removes a test from a specific diagnostic center by test ID and center ID
+    public void removeTest(String centerId, Long testId) {
+        DiagnosticCenter center = diagnosticCenterRepository.findById(centerId)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid center ID"));
+        Test test = testRepository.findById(testId)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid test ID"));
+        if (test.getDiagnosticCenter().equals(center)) {
+            testRepository.delete(test);
+        } else {
+            throw new IllegalArgumentException("Test does not belong to the given center");
+        }
+    }
+
 }

@@ -14,9 +14,9 @@ public class Test {
 
     @Id
 
-    @GeneratedValue(strategy = GenerationType.UUID)
+    @GeneratedValue(strategy = GenerationType.AUTO)
 
-    private String testId;
+    private Long testId;
     private String testName;
 
     @ManyToOne(cascade = CascadeType.ALL)
