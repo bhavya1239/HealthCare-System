@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterModule, RouterOutlet } from '@angular/router';
 import { UserListComponent } from './user-list/user-list.component';
-import { UserRegisterComponent } from './user-register/user-register.component';
 import { UserAppointmentsComponent } from './user-appointments/user-appointments.component';
 import { AdminCenterListComponent } from './admin-center-list/admin-center-list.component';
 import { AdminAddCenterComponent } from './admin-add-center/admin-add-center.component';
@@ -16,7 +15,6 @@ import { AdminAppointmentsComponent } from './admin-appointments/admin-appointme
     RouterModule,
     AppComponent,
     UserListComponent,
-    UserRegisterComponent,
     UserAppointmentsComponent,
     AdminCenterListComponent,
     AdminAddCenterComponent,

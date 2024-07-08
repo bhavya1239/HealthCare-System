@@ -27,8 +27,5 @@ public class User {
     private String userRole;
     private String emailId;
 
-    public Object getPassword() {
-        return userPassword;
-    }
 }
 
