@@ -7,18 +7,19 @@ import { AdminAddCenterComponent } from './admin-add-center/admin-add-center.com
 import { AdminAddTestComponent } from './admin-add-test/admin-add-test.component';
 import { AdminAppointmentsComponent } from './admin-appointments/admin-appointments.component';
 import { NgModule } from '@angular/core';
+import { LoginComponent } from './login/login.component';
 
 export const routes: Routes = [
-    { path: 'user-list', component: UserListComponent },
-    { path: 'user-register', component: UserRegisterComponent },
-    { path: 'user-appointments', component: UserAppointmentsComponent },
-    { path: 'admin-center-list', component: AdminCenterListComponent },
-    { path: 'admin-add-center', component: AdminAddCenterComponent },
-    { path: 'admin-add-test', component: AdminAddTestComponent },
-    { path: 'admin-appointments', component: AdminAppointmentsComponent },
-    { path: '', redirectTo: '/user-list', pathMatch: 'full' },
-    { path: '**', redirectTo: '/user-list' }
-    
+  { path: 'user-list', component: UserListComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'user-register', component: UserRegisterComponent },
+  { path: 'user-appointments', component: UserAppointmentsComponent },
+  { path: 'admin-center-list', component: AdminCenterListComponent },
+  { path: 'admin-add-center', component: AdminAddCenterComponent },
+  { path: 'admin-add-test', component: AdminAddTestComponent },
+  { path: 'admin-appointments', component: AdminAppointmentsComponent },
+  { path: '', redirectTo: '/user-list', pathMatch: 'full' },
+  { path: '**', redirectTo: '/user-list' },
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

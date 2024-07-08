@@ -11,30 +11,24 @@ import java.math.BigInteger;
 import java.util.List;
 
 @Entity
-
 @Data
-
 public class User {
-
     @Id
-
     @GeneratedValue(strategy = GenerationType.UUID)
 
     private String userId;
 
     @OneToOne( cascade = CascadeType.ALL)
-
     private Appointment appointments;
 
     private String userPassword;
-
     private String userName;
-
     private BigInteger contactNo;
-
     private String userRole;
-
     private String emailId;
 
+    public Object getPassword() {
+        return userPassword;
+    }
 }
 

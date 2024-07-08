@@ -7,24 +7,32 @@ import { Appointment } from '../models/appointment.model';
 import { Test } from '../models/test.model';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class UserService {
-  private apiUrl = 'http://localhost:8080/user';
+  private apiUrl = 'http://localhost:8080/admin';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
-  getDiagnosticCenters(): Observable<DiagnosticCenter[]> {
-    return this.http.get<DiagnosticCenter[]>(`${this.apiUrl}/centers`);
+  getUsers(): Observable<any> {
+    return this.http.get(`${this.apiUrl}/allUsers`);
   }
 
   getTests(centerId: string): Observable<Test[]> {
     return this.http.get<Test[]>(`${this.apiUrl}/centers/${centerId}/tests`);
   }
 
-  makeAppointment(userId: string, centerId: string, testId: number, datetime: string): Observable<Appointment> {
+  makeAppointment(
+    userId: string,
+    centerId: string,
+    testId: number,
+    datetime: string
+  ): Observable<Appointment> {
     return this.http.post<Appointment>(`${this.apiUrl}/appointments`, {
-      userId, centerId, testId, datetime
+      userId,
+      centerId,
+      testId,
+      datetime,
     });
   }
 }

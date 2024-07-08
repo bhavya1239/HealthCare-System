@@ -333,17 +333,16 @@
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
 
 <router-outlet>
-<nav>
-  <ul>
-    <li><a [routerLink]="'/user-list'">User List</a></li>
-    <li><a routerLink="/user-register">User Register</a></li>
-    <li><a routerLink="/user-appointments">User Appointments</a></li>
-    <li><a routerLink="/admin-center-list">Admin Center List</a></li>
-    <li><a routerLink="/admin-add-center">Add Center</a></li>
-    <li><a routerLink="/admin-add-test">Add Test</a></li>
-    <li><a routerLink="/admin-appointments">Admin Appointments</a></li>
-  </ul>
-</nav>
-
-  </router-outlet>
-
+  <nav>
+    <ul>
+      <li><a [routerLink]="'/user-list'">Users</a></li>
+      <li><a routerLink="/user-register">User Register</a></li>
+      <li><a routerLink="/user-appointments">User Appointments</a></li>
+      <li><a routerLink="/admin-center-list">Admin Center List</a></li>
+      <li><a routerLink="/admin-add-center">Add Center</a></li>
+      <li><a routerLink="/admin-add-test">Add Test</a></li>
+      <li><a routerLink="/admin-appointments">Admin Appointments</a></li>
+      <li><a routerLink="/login">Login</a></li>
+    </ul>
+  </nav>
+</router-outlet>

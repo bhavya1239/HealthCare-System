@@ -1,3 +1,4 @@
+import { User } from './../models/user.model';
 import { Component, OnInit, NgModule } from '@angular/core';
 import { UserService } from '../service/user.service';
 import { DiagnosticCenter } from '../models/diagnostic-center.model';
@@ -8,16 +9,16 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   imports: [CommonModule],
   templateUrl: './user-list.component.html',
-  styleUrls: ['./user-list.component.css']
+  styleUrls: ['./user-list.component.css'],
 })
 export class UserListComponent implements OnInit {
-  centers: DiagnosticCenter[] = [];
+  Users: any;
 
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService) {}
 
   ngOnInit(): void {
-    this.userService.getDiagnosticCenters().subscribe(data => {
-      this.centers = data;
+    this.userService.getUsers().subscribe((data) => {
+      this.Users = data;
     });
   }
 }
