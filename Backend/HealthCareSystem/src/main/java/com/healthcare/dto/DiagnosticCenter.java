@@ -12,11 +12,11 @@ import java.util.List;
 public class DiagnosticCenter {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
+    @GeneratedValue//(strategy = GenerationType.UUID)
     private String centerId;
     private String centerName;
 
-//    @OneToMany(mappedBy = "diagnosticCenter", cascade = CascadeType.ALL)
+    //    @OneToMany(mappedBy = "diagnosticCenter", cascade = CascadeType.ALL)
     @OneToMany( cascade = CascadeType.ALL)
     private List<Test> listOfTests;
 
@@ -25,4 +25,3 @@ public class DiagnosticCenter {
     private List<Appointment> listOfAppointments;
 
 }
-
