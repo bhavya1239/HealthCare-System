@@ -1,0 +1,33 @@
+<div class="container mt-5 mb-5">
+  <div class="card px-1 py-4">
+    <div class="card-body">
+      <form [formGroup]="appointmentForm" (ngSubmit)="onSubmit()">
+        <h6 class="card-title mb-3">This appointment is for</h6>
+        <div class="form-group">
+          <label for="user">User</label>
+          <input class="form-control" id="user" formControlName="user" [value]="loggedInUser" readonly>
+        </div>
+        <div class="form-group">
+          <label for="test">Test</label>
+          <select class="form-control" id="test" formControlName="test">
+            <option *ngFor="let test of tests" [value]="test.id">{{ test.name }}</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="diagnosticCenter">Diagnostic Center</label>
+          <select class="form-control" id="diagnosticCenter" formControlName="diagnosticCenter">
+            <option *ngFor="let center of diagnosticCenters" [value]="center.id">{{ center.name }}</option>
+          </select>
+        </div>
+        
+        <div class="form-group">
+          <label for="datetime">Date & Time</label>
+          <input matInput [matDatepicker]="picker" formControlName="datetime">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </div>
+        <button class="btn btn-primary btn-block confirm-button" type="submit">Confirm</button>
+      </form>
+    </div>
+  </div>
+</div>

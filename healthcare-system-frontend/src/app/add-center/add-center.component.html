@@ -1,0 +1,56 @@
+<div class="container mt-5 mb-5 d-flex justify-content-center">
+  <div class="card px-1 py-4">
+    <div class="card-body">
+      <h6 class="card-title mb-3">Add Diagnostic Center</h6>
+      <form [formGroup]="centerForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <mat-form-field appearance="fill">
+            <mat-label>Center Name</mat-label>
+            <input matInput formControlName="centerName" placeholder="Enter Center Name">
+          </mat-form-field>
+        </div>
+        <div formArrayName="listOfTests">
+          <h6 class="card-title mt-3">Tests</h6>
+          <div *ngFor="let test of tests.controls; let i=index" [formGroupName]="i">
+            <mat-form-field appearance="fill">
+              <mat-label>Test Name</mat-label>
+              <input matInput formControlName="testName" placeholder="Enter Test Name">
+            </mat-form-field>
+            <button mat-raised-button color="warn" (click)="removeTest(i)">Remove Test</button>
+          </div>
+          <button mat-raised-button color="primary" type="button" (click)="addTest()">Add Test</button>
+        </div>
+        <div formArrayName="listOfAppointments" class="mt-3">
+          <h6 class="card-title">Appointments</h6>
+          <div *ngFor="let appointment of appointments.controls; let i=index" [formGroupName]="i">
+            <mat-form-field appearance="fill">
+              <mat-label>Appointment ID</mat-label>
+              <input matInput formControlName="appointmentId" placeholder="Enter Appointment ID">
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+              <mat-label>User ID</mat-label>
+              <input matInput formControlName="userId" placeholder="Enter User ID">
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+              <mat-label>Test ID</mat-label>
+              <input matInput formControlName="testId" placeholder="Enter Test ID">
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+              <mat-label>Center ID</mat-label>
+              <input matInput formControlName="centerId" placeholder="Enter Center ID">
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+              <mat-label>Datetime</mat-label>
+              <input matInput formControlName="datetime" placeholder="Enter Datetime">
+            </mat-form-field>
+            <mat-checkbox formControlName="approved">Approved</mat-checkbox>
+            <button mat-raised-button color="warn" (click)="removeAppointment(i)">Remove Appointment</button>
+          </div>
+          <button mat-raised-button color="primary" type="button" (click)="addAppointment()">Add Appointment</button>
+        </div>
+        <button mat-raised-button color="primary" type="submit" class="mt-3">Submit</button>
+      </form>
+    </div>
+  </div>
+</div>
+

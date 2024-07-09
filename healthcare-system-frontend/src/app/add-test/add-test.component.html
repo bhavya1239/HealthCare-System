@@ -1,0 +1,18 @@
+<form [formGroup]="testForm" (ngSubmit)="onSubmit()">
+  <mat-form-field appearance="fill">
+    <mat-label>Test Name</mat-label>
+    <input matInput formControlName="testName" required />
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Diagnostic Center</mat-label>
+    <mat-select formControlName="diagnosticCenter" required>
+      <mat-option *ngFor="let center of diagnosticCenters$ | async" [value]="center.id">
+        {{ center.name }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <button mat-raised-button color="primary" type="submit">Add Test</button>
+</form>
+
