@@ -21,6 +21,7 @@ export const routes: Routes = [
   { path: 'add-appointment', component: AddAppointmentComponent },
   { path: 'add-test', component: AddTestComponent },
   { path: 'admin-appointments', component: AdminAppointmentsComponent },
+  { path: 'admin-appointments', component: AdminAppointmentsComponent },
   { path: '', redirectTo: '/add-center', pathMatch: 'full' },
   { path: '', redirectTo: '/user-list', pathMatch: 'full' },
   { path: '**', redirectTo: '/user-list' },

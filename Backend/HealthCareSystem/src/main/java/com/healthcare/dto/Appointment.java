@@ -1,7 +1,5 @@
 package com.healthcare.dto;
 
-
-
 import jakarta.persistence.*;
 
 import lombok.Data;
