@@ -16,7 +16,7 @@ public class Appointment {
 
     @Id
     @GeneratedValue
-    private BigInteger appointmentId;
+    private Integer appointmentId;
 
     @OneToOne (cascade = CascadeType.ALL)
     private User user;
@@ -32,4 +32,3 @@ public class Appointment {
     private boolean approved;
 
 }
-
