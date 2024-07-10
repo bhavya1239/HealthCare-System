@@ -1,0 +1,24 @@
+<app-admin-navbar></app-admin-navbar>
+<div style="text-align: center; margin-top: 50px; " class="box2">
+  <h2 style="display: inline-block;">TESTS</h2>
+  <div style="float: right;">
+  <button type="button" style="background-color: #002244;" class="btn text-light" [routerLink]="'/add-test'">ADD TEST</button>
+  </div>
+  </div>
+<div class="box">
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">INDEX</th>
+      <th scope="col">TEST NAME</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let test of Tests; index as i">
+      <td>{{ i + 1 }}</td>
+      <td>{{ test.testName }}</td>
+      <td>{{test.center}}</td>
+    </tr>
+  </tbody>
+</table>
+</div>

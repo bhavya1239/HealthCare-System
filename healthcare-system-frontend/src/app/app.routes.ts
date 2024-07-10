@@ -10,6 +10,7 @@ import { AddCenterComponent } from './add-center/add-center.component';
 import { SignInPageComponent } from './sign-in-page/sign-in-page.component';
 import { AdminNavbarComponent } from './admin-navbar/admin-navbar.component';
 import { CenterListComponent } from './center-list/center-list.component';
+import { TestListComponent } from './test-list/test-list.component';
 
 export const routes: Routes = [
   { path: 'user-list', component: UserListComponent },
@@ -20,7 +21,8 @@ export const routes: Routes = [
   { path: 'add-center', component: AddCenterComponent },
   { path: 'add-appointment', component: AddAppointmentComponent },
   { path: 'add-test', component: AddTestComponent },
-  {path:'center-list',component:CenterListComponent},
+  { path: 'center-list', component: CenterListComponent },
+  {path:'test-list',component:TestListComponent},
   {path:'admin-navbar',component:AdminNavbarComponent},
   { path: '', redirectTo: '/add-center', pathMatch: 'full' },
   { path: '', redirectTo: '/user-list', pathMatch: 'full' },
