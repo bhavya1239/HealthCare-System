@@ -6,6 +6,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { Observable } from 'rxjs';
+import { AdminNavbarComponent } from '../admin-navbar/admin-navbar.component';
 
 interface DiagnosticCenter {
   id: number;
@@ -21,7 +22,8 @@ interface DiagnosticCenter {
     MatFormFieldModule,
     MatInputModule,
     MatSelectModule,
-    AddTestComponent
+    AddTestComponent,
+    AdminNavbarComponent
   ],
   templateUrl: './add-test.component.html',
   styleUrl: './add-test.component.css'

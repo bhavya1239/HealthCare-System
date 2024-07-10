@@ -1,0 +1,12 @@
+li {
+    display: inline-block;
+    margin: 10px 40px 0px 40px;
+    font-size: x-large  ;
+}
+nav{
+    justify-content: center;
+}
+a{
+    color: white;
+    text-decoration: none;
+  }

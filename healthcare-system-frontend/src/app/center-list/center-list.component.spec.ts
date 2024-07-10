@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AdminAddTestComponent } from './admin-add-test.component';
+import { CenterListComponent } from './center-list.component';
 
-describe('AdminAddTestComponent', () => {
-  let component: AdminAddTestComponent;
-  let fixture: ComponentFixture<AdminAddTestComponent>;
+describe('CenterListComponent', () => {
+  let component: CenterListComponent;
+  let fixture: ComponentFixture<CenterListComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [AdminAddTestComponent]
+      imports: [CenterListComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(AdminAddTestComponent);
+    fixture = TestBed.createComponent(CenterListComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -5,6 +5,8 @@ import { FormArray, FormBuilder, FormGroup, ReactiveFormsModule, Validators } fr
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { AdminNavbarComponent } from '../admin-navbar/admin-navbar.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-center',
@@ -13,14 +15,15 @@ import { MatInputModule } from '@angular/material/input';
     ReactiveFormsModule,
     MatFormFieldModule,
     MatInputModule,
-    MatButtonModule],
+    MatButtonModule,
+  AdminNavbarComponent],
   templateUrl: './add-center.component.html',
   styleUrl: './add-center.component.css'
 })
 export class AddCenterComponent implements OnInit {
   centerForm: FormGroup;
 
-  constructor(private fb: FormBuilder, private http: HttpClient) {
+  constructor(private fb: FormBuilder, private http: HttpClient,private router:Router) {
     this.centerForm = this.fb.group({
       centerName: ['', Validators.required],
       listOfTests: this.fb.array([]),
@@ -68,6 +71,7 @@ export class AddCenterComponent implements OnInit {
       this.http.post('/api/diagnostic-centers', this.centerForm.value).subscribe(response => {
         console.log('Diagnostic center added successfully', response);
       });
+      this.router.navigateByUrl('/center-list');
     }
   }
 }

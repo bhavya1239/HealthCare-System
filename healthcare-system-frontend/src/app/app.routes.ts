@@ -1,27 +1,27 @@
 import { RouterModule, Routes } from '@angular/router';
 import { UserListComponent } from './user-list/user-list.component';
 import { UserAppointmentsComponent } from './user-appointments/user-appointments.component';
-import { AdminCenterListComponent } from './admin-center-list/admin-center-list.component';
-import { AdminAddCenterComponent } from './admin-add-center/admin-add-center.component';
-import { AdminAppointmentsComponent } from './admin-appointments/admin-appointments.component';
 import { NgModule } from '@angular/core';
 import { LoginComponent } from './login/login.component';
 import { RegisterUserFormComponent } from './register-user-form/register-user-form.component';
 import { AddAppointmentComponent } from './add-appointment/add-appointment.component';
 import { AddTestComponent } from './add-test/add-test.component';
 import { AddCenterComponent } from './add-center/add-center.component';
+import { SignInPageComponent } from './sign-in-page/sign-in-page.component';
+import { AdminNavbarComponent } from './admin-navbar/admin-navbar.component';
+import { CenterListComponent } from './center-list/center-list.component';
 
 export const routes: Routes = [
   { path: 'user-list', component: UserListComponent },
+  {path:'',component:SignInPageComponent},
   { path: 'login', component: LoginComponent },
   { path: 'user-register', component: RegisterUserFormComponent },
   { path: 'user-appointments', component: UserAppointmentsComponent },
-  { path: 'admin-center-list', component: AdminCenterListComponent },
   { path: 'add-center', component: AddCenterComponent },
   { path: 'add-appointment', component: AddAppointmentComponent },
   { path: 'add-test', component: AddTestComponent },
-  { path: 'admin-appointments', component: AdminAppointmentsComponent },
-  { path: 'admin-appointments', component: AdminAppointmentsComponent },
+  {path:'center-list',component:CenterListComponent},
+  {path:'admin-navbar',component:AdminNavbarComponent},
   { path: '', redirectTo: '/add-center', pathMatch: 'full' },
   { path: '', redirectTo: '/user-list', pathMatch: 'full' },
   { path: '**', redirectTo: '/user-list' },

@@ -3,11 +3,13 @@ import { Component, OnInit, NgModule } from '@angular/core';
 import { UserService } from '../service/user.service';
 import { DiagnosticCenter } from '../models/diagnostic-center.model';
 import { CommonModule } from '@angular/common';
+import { AdminNavbarComponent } from '../admin-navbar/admin-navbar.component';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-user-list',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule,AdminNavbarComponent,RouterModule],
   templateUrl: './user-list.component.html',
   styleUrls: ['./user-list.component.css'],
 })

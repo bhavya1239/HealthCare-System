@@ -3,10 +3,6 @@ import { Component } from '@angular/core';
 import { RouterModule, RouterOutlet } from '@angular/router';
 import { UserListComponent } from './user-list/user-list.component';
 import { UserAppointmentsComponent } from './user-appointments/user-appointments.component';
-import { AdminCenterListComponent } from './admin-center-list/admin-center-list.component';
-import { AdminAddCenterComponent } from './admin-add-center/admin-add-center.component';
-import { AdminAddTestComponent } from './admin-add-test/admin-add-test.component';
-import { AdminAppointmentsComponent } from './admin-appointments/admin-appointments.component';
 import { AddAppointmentComponent } from './add-appointment/add-appointment.component';
 import { ReactiveFormsModule } from '@angular/forms';
 
@@ -29,10 +25,6 @@ import { AddCenterComponent } from './add-center/add-center.component';
     AppComponent,
     UserListComponent,
     UserAppointmentsComponent,
-    AdminCenterListComponent,
-    AdminAddCenterComponent,
-    AdminAddTestComponent,
-    AdminAppointmentsComponent,
     AddAppointmentComponent,
     ReactiveFormsModule,
     MatFormFieldModule,
