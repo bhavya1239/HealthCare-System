@@ -1,30 +1,48 @@
-import { Component, OnInit } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { AdminService } from '../service/admin.service';
-import { User } from '../models/user.model';
+import { Component } from '@angular/core';
+import { FormsModule, NgForm } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 import { AdminNavbarComponent } from '../admin-navbar/admin-navbar.component';
-import { Route, Router } from '@angular/router';
+import { Router } from '@angular/router';
+import { User } from '../user';
+import { AuthService } from '../service/auth.service';
 
 @Component({
   selector: 'app-register-user-form',
   standalone: true,
-  imports: [FormsModule,AdminNavbarComponent],
+  imports: [CommonModule, FormsModule, AdminNavbarComponent],
   templateUrl: './register-user-form.component.html',
-  styleUrl: './register-user-form.component.css'
+  styleUrls: ['./register-user-form.component.css']
 })
 export class RegisterUserFormComponent {
-  registeringUser:User={
+  registeringUser: User = {
     userId: "",
-    userPassword:"" ,
-    userName: "",
+    firstName: "",
+    lastName: "",
+    password: "",
     contactNo: "",
     userRole: "",
     emailId: "",
+    userName: undefined,
+    userPassword: undefined
   };
-  constructor(private adminService:AdminService,private router : Router){}
 
-  update() {
-       this.adminService.register(this.registeringUser).subscribe(data=>console.log(data));
-        this.router.navigateByUrl('/user-list');
+  constructor(private authService: AuthService, private router: Router) {}
+
+  update(form: NgForm) {
+    if (form.invalid) {
+      alert('Please fill in all required fields.');
+      return;
+    }
+
+    this.authService.register(this.registeringUser).subscribe({
+      next: (data) => {
+        console.log(data);
+        sessionStorage.setItem('token', data.token);
+        this.router.navigateByUrl('/login');
+      },
+      error: (err) => {
+        alert('Registration failed.');
+      }
+    });
   }
 }

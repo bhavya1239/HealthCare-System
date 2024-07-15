@@ -1,44 +1,51 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+// src/app/login/login.component.ts
+
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { AuthService } from '../service/auth.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 @Component({
-  selector: 'login',
-   standalone: true,
-  imports: [CommonModule,FormsModule],
-    templateUrl: './login.component.html'
+  selector: 'app-login',
+  standalone: true,
+  imports: [CommonModule, FormsModule],
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.css']
 })
-
 export class LoginComponent implements OnInit {
+  model: any = {};
 
-  @Input()  model: any = {};
-loading: any;
+  constructor(
+    private router: Router,
+    private http: HttpClient,
+    private authService: AuthService
+  ) {}
 
-    constructor(
-        private route: ActivatedRoute,
-        private router: Router,
-        private http: HttpClient
-    ) { }
+  ngOnInit() {
+    sessionStorage.setItem('token', '');
+  }
 
-    ngOnInit() {
-        sessionStorage.setItem('token', '');
-    }
+  login() {
+    const credentials = {
+      email: this.model.email,
+      password: this.model.password
+    };
 
-    login() {
-        let url = 'http://localhost:8080/login';
-        this.http.post<Observable<boolean>>(url, {
-            userName: this.model.username,
-            password: this.model.password
-        }).subscribe(isValid => {
-            if (isValid) {
-                sessionStorage.setItem('token', btoa(this.model.username + ':' + this.model.password));
-                this.router.navigate(['']);
-            } else {
-                alert("Authentication failed.")
-            }
-        });
-    }
+    this.authService.authenticate(credentials).subscribe(
+      (response: { token: string }) => {
+        if (response && response.token) {
+          this.authService.setToken(response.token); // Store the token using AuthService
+          console.log(response.token);
+          this.router.navigate(['']);  // Navigate to the home page or another route
+        } else {
+          alert('Authentication failed.');
+        }
+      },
+      (error: any) => {
+        alert('Authentication failed.');
+      }
+    );
+  }
 }

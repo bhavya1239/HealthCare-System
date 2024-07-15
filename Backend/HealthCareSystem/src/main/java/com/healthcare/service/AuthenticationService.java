@@ -1,8 +1,8 @@
 package com.healthcare.service;
 
+import com.healthcare.dto.User;
 import com.healthcare.enumeration.Role;
 import com.healthcare.jwt.Service.JwtService;
-import com.healthcare.dto.User;
 import com.healthcare.model.request.AuthenticationRequest;
 import com.healthcare.model.request.RegisterRequest;
 import com.healthcare.model.response.AuthenticationResponse;
@@ -26,7 +26,10 @@ public class AuthenticationService {
         User user = new User();
         user.setFirstName(request.getFirstName());
         user.setLastName((request.getLastName()));
-        user.setEmail(request.getEmail());
+        user.setEmail(request.getEmailId());
+        user.setUserRole(request.getUserRole());
+        user.setContactNo(request.getContactNo());
+        user.setId(request.getUserId());
 
         user.setPassword((passwordEncoder.encode(request.getPassword())));
 
@@ -50,9 +53,11 @@ public class AuthenticationService {
         var user = repository.findByEmail(request.getEmail()).orElseThrow();
 
         var jwtToken = jwtService.generateToken((UserDetails) user);
-
-        return AuthenticationResponse.builder()
+        System.out.println(jwtToken);
+        AuthenticationResponse build = AuthenticationResponse.builder()
                 .token(jwtToken)
                 .build();
+        System.out.println("build "+build );
+        return  build;
     }
 }

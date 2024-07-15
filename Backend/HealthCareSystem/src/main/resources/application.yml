@@ -2,11 +2,11 @@ spring:
   jpa:
     show-sql:  true
     hibernate:
-      ddl-auto:  update # do create for first time then update it
+      ddl-auto:  create # do create for first time then update it
   datasource:
     url: jdbc:mysql://localhost:3306/hc1
     username:  root
-    password:  niit@123
+    password:  mysql
     driver-class-name:  com.mysql.cj.jdbc.Driver
 security:
   jwt:

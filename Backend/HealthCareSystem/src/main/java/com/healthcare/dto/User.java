@@ -36,8 +36,7 @@ public class User implements UserDetails {
     private String password;
     private BigInteger contactNo;
     private String userRole;
-    private String emailId;
-
+    //private String emailId;
 
     @Enumerated(EnumType.STRING)
     private Role role;
