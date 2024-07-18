@@ -11,13 +11,14 @@
     <tr>
       <th scope="col">INDEX</th>
       <th scope="col">TEST NAME</th>
+      <th scope="col">Diagnostic Center</th>
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let test of Tests; index as i">
       <td>{{ i + 1 }}</td>
       <td>{{ test.testName }}</td>
-      <td>{{test.center}}</td>
+      <td>{{test.diagnosticCenter.centerName}}</td>
     </tr>
   </tbody>
 </table>

@@ -18,6 +18,10 @@ export class AdminService {
     return this.http.post(`${this.apiUrl}/register`, user);
   }
 
+  login(credentials:any):any{
+    return this.http.post(`${this.apiUrl}/logIn`,credentials);
+  }
+
   getAllUsers(): Observable<User[]> {
     return this.http.get<User[]>(`${this.apiUrl}/allUsers`);
   }
@@ -36,6 +40,10 @@ export class AdminService {
 
   addTest(test: Test): Observable<Test> {
     return this.http.post<Test>(`${this.apiUrl}/addTest`, test);
+  }
+
+  getTest(){
+    return this.http.get(`${this.apiUrl}/tests`);
   }
 
   removeTest(testId: number): Observable<void> {

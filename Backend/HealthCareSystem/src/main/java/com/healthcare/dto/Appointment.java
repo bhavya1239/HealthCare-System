@@ -19,13 +19,9 @@ public class Appointment {
     private Integer appointmentId;
 
     @OneToOne (cascade = CascadeType.ALL)
-    private User user;
-
-    @OneToOne (cascade = CascadeType.ALL)
     private Test test;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "center_id")
+    @OneToOne (cascade = CascadeType.ALL)
     private DiagnosticCenter diagnosticCenter;
 
     private LocalDateTime datetime;

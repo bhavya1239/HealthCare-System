@@ -1,17 +1,18 @@
 <!-- src/app/login/login.component.html -->
 
-<div class="container">
+<div style="border: 3px solid black; margin: 100px auto; max-width: 800px; padding: 50px; border-radius: 20px;">
   <form
-    class="w-50 bg-primary text-dark p-5 m-5"
-    style="border: double; border-radius: 10pt"
     (ngSubmit)="login()"
-  >
+    >
+    <div style="text-align: center;">
+      <h2>Sign In</h2>
+    </div>
     <div class="form-group">
       <label>Email</label>
       <input
         class="form-control"
         name="email"
-        [(ngModel)]="model.email"
+        [(ngModel)]="credentials.email"
         #email="ngModel"
         required
       />
@@ -19,14 +20,14 @@
         Email is blank
       </span>
     </div>
-
+<br>
     <div class="form-group">
       <label>Password</label>
       <input
         class="form-control"
         type="password"
         name="password"
-        [(ngModel)]="model.password"
+        [(ngModel)]="credentials.password"
         #password="ngModel"
         required
         minlength="6"
@@ -36,12 +37,9 @@
         Password is blank
       </span>
     </div>
-
-    <div class="form-group" style="margin-top: 5pt">
-      <button type="submit" class="btn btn-secondary">Login</button>
-      <button type="reset" class="btn btn-secondary" style="margin-left: 2pt">
-        Cancel
-      </button>
+<br>
+    <div class="form-group" style="margin-top: 5pt; text-align: center;">
+      <button type="submit" class="btn btn-primary">Login</button>
     </div>
   </form>
 </div>

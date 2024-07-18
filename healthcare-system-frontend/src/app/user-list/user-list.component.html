@@ -2,29 +2,25 @@
 <div style="text-align: center; margin-top: 50px; " class="box2">
   <h2 style="display: inline-block;">USER INFORMATION</h2>
   <div style="float: right;">
-  <button type="button" style="background-color: #002244;" class="btn text-light" [routerLink]="'/user-register'">REGISTER USER</button>
+  <button type="button" style="background-color: #002244;" class="btn text-light" [routerLink]="'/admin-register'">REGISTER USER</button>
   </div>
   </div>
 <div class="box">
 <table class="table">
-  <thead class="thead-dark">
+  <thead style="background-color: black;">
     <tr>
       <th scope="col">INDEX</th>
       <th scope="col">NAME</th>
       <th scope="col">CONTACT NUMBER</th>
-      <th scope="col">USER ROLE</th>
       <th scope="col">EMAIL ID</th>
-      <th scope="col">APPOINTMENTS</th>
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let user of Users; index as i">
       <td>{{ i + 1 }}</td>
-      <td>{{ user.userName }}</td>
+      <td>{{ user.firstName +" "+ user.lastName }}</td>
       <td>{{ user.contactNo }}</td>
-      <td>{{ user.userRole }}</td>
-      <td>{{ user.emailId }}</td>
-      <td>{{ user.appointments }}</td>
+      <td>{{ user.email }}</td>
     </tr>
   </tbody>
 </table>

@@ -8,5 +8,5 @@ import java.util.List;
 @Repository
 public interface TestRepository  extends JpaRepository<Test, Long> {
 
-    List<Test> findByDiagnosticCenterCenterId(String centerId);
+    //List<Test> findByDiagnosticCenterCenterId(int centerId);
 }

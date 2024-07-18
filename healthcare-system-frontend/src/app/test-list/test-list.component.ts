@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AdminNavbarComponent } from "../admin-navbar/admin-navbar.component";
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
@@ -7,6 +7,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { AddTestComponent } from '../add-test/add-test.component';
+import { AdminService } from '../service/admin.service';
 
 @Component({
   selector: 'app-test-list',
@@ -23,8 +24,11 @@ import { AddTestComponent } from '../add-test/add-test.component';
   templateUrl: './test-list.component.html',
   styleUrl: './test-list.component.css'
 })
-export class TestListComponent {
+export class TestListComponent implements OnInit  {
   Tests:any;
-testForm: any;
-onSubmit(){}
+  constructor(private adminService:AdminService){}
+  ngOnInit(): void {
+    this.adminService.getTest().subscribe(data=>this.Tests=data);
+  }
+    
 }

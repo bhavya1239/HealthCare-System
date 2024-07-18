@@ -34,9 +34,9 @@ public class UserService {
         return diagnosticCenterRepository.findAll();
     }
 
-    public List<Test> getTests(String centerId) {
-        return testRepository.findByDiagnosticCenterCenterId(centerId);
-    }
+//    public List<Test> getTests(int centerId) {
+//        return testRepository.findByDiagnosticCenterCenterId(centerId);
+//    }
 
     public Appointment makeAppointment(Appointment appointment) {
 //        User user = userRepository.findById(userId).orElseThrow();

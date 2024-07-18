@@ -24,10 +24,10 @@ public class CustomerController {
         return userService.getDiagnosticCenters();
     }
 
-    @GetMapping("/centers/{centerId}/tests")
-    public List<Test> getTests(@PathVariable String centerId) {
-        return userService.getTests(centerId);
-    }
+//    @GetMapping("/centers/{centerId}/tests")
+//    public List<Test> getTests(@PathVariable int centerId) {
+//        return userService.getTests(centerId);
+//    }
 
     @PostMapping("/addAppointment")
     public Appointment makeAppointment(@RequestBody Appointment appointment) {

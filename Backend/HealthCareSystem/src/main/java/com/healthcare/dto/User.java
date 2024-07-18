@@ -7,6 +7,7 @@ import jakarta.persistence.*;
 import lombok.Data;
 
 import java.math.BigInteger;
+import java.util.List;
 
 
 @Entity
@@ -16,14 +17,14 @@ public class User {
     @GeneratedValue//(strategy = GenerationType.UUID)
     private Integer id;
 
-    @OneToOne( cascade = CascadeType.ALL)
-    private Appointment appointments;
+    @OneToMany ( cascade = CascadeType.ALL)
+    private List<Appointment> appointments;
 
     private String firstName;
     private String lastName;
     private String email;
     private String password;
     private BigInteger contactNo;
-    private String userRole;
+    private boolean isAdmin;
 
 }

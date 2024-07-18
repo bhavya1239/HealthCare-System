@@ -2,20 +2,16 @@
 <div style="text-align: center; margin-top: 40px;">
   <h3>ADD TEST</h3>
   </div>
-<form [formGroup]="testForm" (ngSubmit)="onSubmit()">
-  <mat-form-field appearance="fill">
+<form (ngSubmit)="onSubmit()">
     <mat-label>Test Name</mat-label>
-    <input matInput formControlName="testName" required />
-  </mat-form-field>
+    <input name="testName" [(ngModel)]="test.testName" required />
 
-  <mat-form-field appearance="fill">
-    <mat-label>Diagnostic Center</mat-label>
-    <mat-select formControlName="diagnosticCenter" required>
-      <mat-option *ngFor="let center of diagnosticCenters$ | async" [value]="center.id">
-        {{ center.name }}
-      </mat-option>
-    </mat-select>
-  </mat-form-field>
+        <label for="centers"> Diagnostic Centers </label>
+        <select id="centers" name="centers" [(ngModel)]="center" >
+          <option *ngFor="let center of diagnosticCenters " value={{center.centerId}}>
+            {{center.centerName}}
+          </option>
+        </select>
 
   <button mat-raised-button color="primary" type="submit">Add Test</button>
 </form>

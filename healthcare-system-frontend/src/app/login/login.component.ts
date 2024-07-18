@@ -2,10 +2,10 @@
 
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
-import { AuthService } from '../service/auth.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { AdminService } from '../service/admin.service';
+import { Credentials } from '../models/credentials';
 
 @Component({
   selector: 'app-login',
@@ -14,38 +14,30 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent{
   model: any = {};
+
+  credentials:Credentials={
+    email:"",
+    password:""
+  }
 
   constructor(
     private router: Router,
-    private http: HttpClient,
-    private authService: AuthService
+    private adminService: AdminService
   ) {}
 
-  ngOnInit() {
-    sessionStorage.setItem('token', '');
-  }
 
   login() {
-    const credentials = {
-      email: this.model.email,
-      password: this.model.password
-    };
+    
 
-    this.authService.authenticate(credentials).subscribe(
-      (response: { token: string }) => {
-        if (response && response.token) {
-          this.authService.setToken(response.token); // Store the token using AuthService
-          console.log(response.token);
-          this.router.navigate(['']);  // Navigate to the home page or another route
-        } else {
-          alert('Authentication failed.');
-        }
-      },
-      (error: any) => {
-        alert('Authentication failed.');
-      }
-    );
+    this.adminService.login(this.credentials).subscribe((data: any)=>{
+        if(data.admin==true)      
+        this.router.navigateByUrl('admin');
+      else
+      this.router.navigateByUrl('user-page');
+    },
+    (error:any)=>{alert("Wrong Credentials")}
+  );
   }
 }

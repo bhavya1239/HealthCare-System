@@ -10,10 +10,10 @@ import { AdminService } from '../service/admin.service';
   selector: 'app-register-user-form',
   standalone: true,
   imports: [CommonModule, FormsModule, AdminNavbarComponent],
-  templateUrl: './register-user-form.component.html',
-  styleUrls: ['./register-user-form.component.css']
+  templateUrl: './user-register-admin.component.html',
+  styleUrls: ['./user-register-admin.component.css']
 })
-export class RegisterUserFormComponent {
+export class UserRegisterAdminComponent {
   registeringUser: User = {
     firstName: "",
     lastName: "",
@@ -30,11 +30,13 @@ export class RegisterUserFormComponent {
       alert('Please fill in all required fields.');
       return;
     }
+    this.checkRole=="true"?this.registeringUser.admin=true:this.registeringUser.admin=false;
+    //console.log(this.registeringUser);
     
     this.adminService.register(this.registeringUser).subscribe({
       next: (data) => {
         console.log(data);
-        this.router.navigateByUrl('/login');
+        this.router.navigateByUrl('/user-list');
       },
       error: (err) => {
         alert('Registration failed.');

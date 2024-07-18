@@ -2,7 +2,6 @@
 import { Component } from '@angular/core';
 import { RouterModule, RouterOutlet } from '@angular/router';
 import { UserListComponent } from './user-list/user-list.component';
-import { UserAppointmentsComponent } from './user-appointments/user-appointments.component';
 import { AddAppointmentComponent } from './add-appointment/add-appointment.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -14,7 +13,6 @@ import { CommonModule } from '@angular/common';
 import { AddTestComponent } from './add-test/add-test.component';
 import { AddCenterComponent } from './add-center/add-center.component';
 import { RegisterUserFormComponent } from './register-user-form/register-user-form.component';
-import { UserModule } from './user/user.module';
 
 @Component({
   selector: 'app-root',
@@ -24,7 +22,6 @@ import { UserModule } from './user/user.module';
     RouterModule,
     RouterOutlet,
     UserListComponent,
-    UserAppointmentsComponent,
     AddAppointmentComponent,
     FormsModule,
     ReactiveFormsModule,
@@ -35,7 +32,6 @@ import { UserModule } from './user/user.module';
     MatSelectModule,
     AddTestComponent,
     AddCenterComponent,
-    UserModule,
     RegisterUserFormComponent
     
   ],

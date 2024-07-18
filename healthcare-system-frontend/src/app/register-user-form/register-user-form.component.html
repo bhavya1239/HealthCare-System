@@ -1,5 +1,6 @@
-<div class="container">
-  <h2>Register</h2>
+<div>
+<div class="box" style="margin: 50px auto; max-width: 800px; padding: 20px;">
+  <h2>Register User</h2>
   <form #registerForm="ngForm" (ngSubmit)="update(registerForm)">
     <div class="form-group">
       <label>First Name</label>
@@ -34,15 +35,15 @@
       <input
         class="form-control"
         name="emailId"
-        [(ngModel)]="registeringUser.emailId"
+        [(ngModel)]="registeringUser.email"
         required
         email
-        #emailId="ngModel"
+        #email="ngModel"
       />
-      <span *ngIf="emailId.touched && emailId.invalid" class="text-danger">
+      <span *ngIf="email.touched && email.invalid" class="text-danger">
         Email is required.
       </span>
-      <span *ngIf="emailId.touched && emailId.errors?.['email']" class="text-danger">
+      <span *ngIf="email.touched && email.errors?.['email']" class="text-danger">
         Enter a valid email.
       </span>
     </div>
@@ -83,23 +84,9 @@
         Enter a valid 10-digit contact number.
       </span>
     </div>
-
-    <div class="form-group">
-      <label>User Role</label>
-      <input
-        class="form-control"
-        name="userRole"
-        [(ngModel)]="registeringUser.userRole"
-        required
-        #userRole="ngModel"
-      />
-      <span *ngIf="userRole.touched && userRole.invalid" class="text-danger">
-        User role is required.
-      </span>
-    </div>
-
-    <div class="form-group">
+    <div class="form-group" style="text-align: center;">
       <button type="submit" class="btn btn-primary">Register</button>
     </div>
   </form>
+</div>
 </div>

@@ -1,0 +1,107 @@
+<div>
+    <div class="box" style="margin: 50px auto; max-width: 800px; padding: 20px;">
+      <h2>Register User</h2>
+      <form #registerForm="ngForm" (ngSubmit)="update(registerForm)">
+        <div class="form-group">
+          <label>First Name</label>
+          <input
+            class="form-control"
+            name="firstName"
+            [(ngModel)]="registeringUser.firstName"
+            required
+            #firstName="ngModel"
+          />
+          <span *ngIf="firstName.touched && firstName.invalid" class="text-danger">
+            First name is required.
+          </span>
+        </div>
+    
+        <div class="form-group">
+          <label>Last Name</label>
+          <input
+            class="form-control"
+            name="lastName"
+            [(ngModel)]="registeringUser.lastName"
+            required
+            #lastName="ngModel"
+          />
+          <span *ngIf="lastName.touched && lastName.invalid" class="text-danger">
+            Last name is required.
+          </span>
+        </div>
+    
+        <div class="form-group">
+          <label>Email</label>
+          <input
+            class="form-control"
+            name="emailId"
+            [(ngModel)]="registeringUser.email"
+            required
+            email
+            #email="ngModel"
+          />
+          <span *ngIf="email.touched && email.invalid" class="text-danger">
+            Email is required.
+          </span>
+          <span *ngIf="email.touched && email.errors?.['email']" class="text-danger">
+            Enter a valid email.
+          </span>
+        </div>
+    
+        <div class="form-group">
+          <label>Password</label>
+          <input
+            class="form-control"
+            type="password"
+            name="password"
+            [(ngModel)]="registeringUser.password"
+            required
+            minlength="6"
+            #password="ngModel"
+          />
+          <span *ngIf="password.touched && password.invalid" class="text-danger">
+            Password is required.
+          </span>
+          <span *ngIf="password.touched && password.errors?.['minlength']" class="text-danger">
+            Password must be at least 6 characters.
+          </span>
+        </div>
+    
+        <div class="form-group">
+          <label>Contact Number</label>
+          <input
+            class="form-control"
+            name="contactNo"
+            [(ngModel)]="registeringUser.contactNo"
+            required
+            pattern="[0-9]{10}"
+            #contactNo="ngModel"
+          />
+          <span *ngIf="contactNo.touched && contactNo.invalid" class="text-danger">
+            Contact number is required.
+          </span>
+          <span *ngIf="contactNo.touched && contactNo.errors?.['pattern']" class="text-danger">
+            Enter a valid 10-digit contact number.
+          </span>
+        </div>
+    
+        <div class="form-group">
+          <label>Is Admin</label>&nbsp;
+          <input type="radio"
+            value="true"
+            name="userRole"
+            [(ngModel)]="checkRole"
+            required
+            #userRole="ngModel"
+          />
+          <span *ngIf="userRole.touched && userRole.invalid" class="text-danger">
+            User role is required.
+          </span>
+        </div>
+    
+        <div class="form-group" style="text-align: center;">
+          <button type="submit" class="btn btn-primary">Register</button>
+        </div>
+      </form>
+    </div>
+    </div>
