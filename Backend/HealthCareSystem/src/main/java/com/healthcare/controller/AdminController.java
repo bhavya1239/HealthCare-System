@@ -49,7 +49,7 @@ public class AdminController {
     }
 
     @DeleteMapping("/tests/{testId}")
-    public void removeTest(@PathVariable Long testId) {
+    public void removeTest(@PathVariable int testId) {
         adminService.removeTest(testId);
     }
 //
@@ -59,10 +59,10 @@ public class AdminController {
 //    }
 
 
-    @GetMapping("/centers/{centerId}/appointments")
-    public List<Appointment> getAppointments(@PathVariable int centerId) {
-        return adminService.getAppointments(centerId);
-    }
+//    @GetMapping("/centers/{centerId}/appointments")
+//    public List<Appointment> getAppointments(@PathVariable int centerId) {
+//        return adminService.getAppointments(centerId);
+//    }
 
     @PostMapping("/appointments/{appointmentId}/approve")
     public void approveAppointment(@PathVariable int appointmentId, @RequestParam boolean approved) {

@@ -39,17 +39,18 @@ public class UserService {
 //    }
 
     public Appointment makeAppointment(Appointment appointment) {
-//        User user = userRepository.findById(userId).orElseThrow();
-//        DiagnosticCenter center = diagnosticCenterRepository.findById(centerId).orElseThrow();
-//        Test test = testRepository.findById(testId).orElseThrow();
-//
-//        Appointment appointment = new Appointment();
-//        appointment.setUser(user);
-//        appointment.setDiagnosticCenter(center);
-//        appointment.setTest(test);
-//        //appointment.setDatetime(dateTime);
-//        appointment.setApproved(false);
+        // User user = userRepository.findById(appointment.get).orElseThrow();
+        // DiagnosticCenter center = diagnosticCenterRepository.findById(appointment.getTest().
+        //  getDiagnosticCenter().getCenterId()).orElseThrow();
+        Test test = testRepository.findById(appointment.getTest().getTestId()).orElseThrow();
 
-        return appointmentRepository.save(appointment);
+        Appointment appointment1 = new Appointment();
+        // appointment1.setUser(user);
+        // appointment1.setDiagnosticCenter(center);
+        appointment1.setTest(test);
+        appointment1.setDatetime(appointment.getDatetime());
+        appointment1.setApproved(false);
+
+        return appointmentRepository.save(appointment1);
     }
 }

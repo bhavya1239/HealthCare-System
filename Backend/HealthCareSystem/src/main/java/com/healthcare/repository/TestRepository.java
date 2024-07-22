@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 @Repository
-public interface TestRepository  extends JpaRepository<Test, Long> {
+public interface TestRepository  extends JpaRepository<Test, Integer> {
 
     //List<Test> findByDiagnosticCenterCenterId(int centerId);
 }

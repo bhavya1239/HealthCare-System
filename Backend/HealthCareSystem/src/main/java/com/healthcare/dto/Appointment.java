@@ -21,9 +21,6 @@ public class Appointment {
     @OneToOne (cascade = CascadeType.ALL)
     private Test test;
 
-    @OneToOne (cascade = CascadeType.ALL)
-    private DiagnosticCenter diagnosticCenter;
-
     private LocalDateTime datetime;
     private boolean approved;
 

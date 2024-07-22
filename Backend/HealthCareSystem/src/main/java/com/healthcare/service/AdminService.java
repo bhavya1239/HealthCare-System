@@ -68,13 +68,13 @@ public class AdminService {
         }).findFirst().get();
     }
 
-    public void removeTest(Long testId) {
+    public void removeTest(int testId) {
         testRepository.deleteById(testId);
     }
 
-    public List<Appointment> getAppointments(int centerId) {
-        return appointmentRepository.findByDiagnosticCenterCenterId(centerId);
-    }
+//    public List<Appointment> getAppointments(int centerId) {
+//        return appointmentRepository.findBy(centerId);
+//    }
 
     public void approveAppointment(int appointmentId, boolean approved) {
         Appointment appointment = appointmentRepository.findById(appointmentId).orElseThrow();
